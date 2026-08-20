@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Priority Dashboard - SmartMed</title>
+
+    <link rel="stylesheet"
+          href="static/style.css">
+
+</head>
+
+
+<body>
+
+    <!-- Navigation -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🏥 SmartMed
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/">Home</a>
+
+            <a href="/register">
+                Register Patient
+            </a>
+
+            <a href="/dashboard"
+               class="active">
+                Priority Dashboard
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Dashboard -->
+
+    <main class="dashboard">
+
+        <div class="dashboard-heading">
+
+            <div>
+
+                <div class="badge">
+                    ⚡ Greedy Algorithm
+                </div>
+
+                <h1>
+                    Patient Priority Dashboard
+                </h1>
+
+                <p>
+                    Patients are automatically arranged from
+                    highest to lowest priority.
+                </p>
+
+            </div>
+
+
+            <a href="/register"
+               class="btn primary-btn">
+
+                + Register Patient
+
+            </a>
+
+        </div>
+
+
+        <!-- Statistics -->
+
+        <div class="stats-grid">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    👥
+                </div>
+
+                <div>
+
+                    <span>
+                        Total Patients
+                    </span>
+
+                    <strong>
+                        {{ patients|length }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon critical-bg">
+                    🚨
+                </div>
+
+                <div>
+
+                    <span>
+                        Critical Patients
+                    </span>
+
+                    <strong>
+
+                        {{ patients|
+                           selectattr("severity", "equalto", "Critical")|
+                           list|
+                           length }}
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon waiting-bg">
+                    ⏳
+                </div>
+
+                <div>
+
+                    <span>
+                        Waiting
+                    </span>
+
+                    <strong>
+
+                        {{ patients|
+                           selectattr("status", "equalto", "Waiting")|
+                           list|
+                           length }}
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon scheduled-bg">
+                    📅
+                </div>
+
+                <div>
+
+                    <span>
+                        Scheduled
+                    </span>
+
+                    <strong>
+
+                        {{ patients|
+                           selectattr("status", "equalto", "Scheduled")|
+                           list|
+                           length }}
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Search -->
+
+        <div class="dashboard-controls">
+
+            <div class="search-box">
+
+                🔍
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search patient, disease or ID...">
+
+            </div>
+
+
+            <select id="severityFilter">
+
+                <option value="All">
+                    All Severity
+                </option>
+
+                <option value="Critical">
+                    Critical
+                </option>
+
+                <option value="Severe">
+                    Severe
+                </option>
+
+                <option value="Moderate">
+                    Moderate
+                </option>
+
+                <option value="Mild">
+                    Mild
+                </option>
+
+                <option value="Routine">
+                    Routine
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- Priority Queue -->
+
+        <div class="queue-container">
+
+            <div class="queue-header">
+
+                <div>
+
+                    <h2>
+                        Priority Queue
+                    </h2>
+
+                    <p>
+                        Highest priority patients appear first.
+                    </p>
+
+                </div>
+
+                <div class="live">
+                    ● LIVE
+                </div>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table id="patientTable">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Rank
+                            </th>
+
+                            <th>
+                                Patient
+                            </th>
+
+                            <th>
+                                Disease
+                            </th>
+
+                            <th>
+                                Severity
+                            </th>
+
+                            <th>
+                                Priority
+                            </th>
+
+                            <th>
+                                Appointment
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        {% for patient in patients %}
+
+                        <tr class="patient-row"
+                            data-severity="{{ patient.severity }}">
+
+                            <td>
+
+                                <div class="rank">
+                                    {{ loop.index }}
+                                </div>
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="patient-name">
+
+                                    <div class="avatar">
+                                        {{ patient.name[0] }}
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            {{ patient.name }}
+                                        </strong>
+
+                                        <small>
+                                            {{ patient.patient_id }}
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+
+                                {{ patient.disease }}
+
+                            </td>
+
+
+                            <td>
+
+                                {% if patient.severity == "Critical" %}
+
+                                <span class="severity critical">
+                                    Critical
+                                </span>
+
+                                {% elif patient.severity == "Severe" %}
+
+                                <span class="severity severe">
+                                    Severe
+                                </span>
+
+                                {% elif patient.severity == "Moderate" %}
+
+                                <span class="severity moderate">
+                                    Moderate
+                                </span>
+
+                                {% elif patient.severity == "Mild" %}
+
+                                <span class="severity mild">
+                                    Mild
+                                </span>
+
+                                {% else %}
+
+                                <span class="severity routine">
+                                    Routine
+                                </span>
+
+                                {% endif %}
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="priority-score">
+
+                                    {{ patient.priority }}
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+
+                                {% if patient.appointment_date %}
+
+                                <div>
+                                    {{ patient.appointment_date }}
+                                </div>
+
+                                <small>
+                                    {{ patient.appointment_time }}
+                                </small>
+
+                                {% else %}
+
+                                <span class="not-scheduled">
+                                    Not Scheduled
+                                </span>
+
+                                {% endif %}
+
+                            </td>
+
+
+                            <td>
+
+                                {% if patient.status == "Scheduled" %}
+
+                                <span class="status scheduled">
+                                    Scheduled
+                                </span>
+
+                                {% elif patient.status == "Completed" %}
+
+                                <span class="status completed">
+                                    Completed
+                                </span>
+
+                                {% elif patient.status == "Cancelled" %}
+
+                                <span class="status cancelled">
+                                    Cancelled
+                                </span>
+
+                                {% else %}
+
+                                <span class="status waiting">
+                                    Waiting
+                                </span>
+
+                                {% endif %}
+
+                            </td>
+
+                        </tr>
+
+                        {% else %}
+
+                        <tr>
+
+                            <td colspan="7"
+                                class="empty-state">
+
+                                <div>
+                                    👥
+                                </div>
+
+                                <h3>
+                                    No patients registered
+                                </h3>
+
+                                <p>
+                                    Register a patient to start
+                                    the priority queue.
+                                </p>
+
+                                <a href="/register"
+                                   class="btn primary-btn">
+
+                                    Register First Patient
+
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <!-- Algorithm Explanation -->
+
+        <div class="algorithm-card">
+
+            <div class="algorithm-icon">
+                🧠
+            </div>
+
+            <div>
+
+                <h3>
+                    How the Greedy Algorithm Works
+                </h3>
+
+                <p>
+
+                    At each scheduling step, the system selects
+                    the waiting patient with the highest priority
+                    score and assigns the earliest available
+                    appointment slot.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+
+        <strong>
+            SmartMed
+        </strong>
+
+        <p>
+            Intelligent Medical Appointment Scheduling System
+        </p>
+
+    </footer>
+
+
+    <script src="static/script.js"></script>
+
+</body>
+</html>

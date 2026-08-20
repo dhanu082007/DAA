@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SmartMed - Intelligent Appointment System</title>
+
+    <link rel="stylesheet"
+          href="static/style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+
+        <div class="logo">
+            🏥 SmartMed
+        </div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/register">Register Patient</a>
+            <a href="/dashboard">Priority Dashboard</a>
+        </div>
+
+    </nav>
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="badge">
+                ⚡ Intelligent Greedy Scheduling
+            </div>
+
+            <h1>
+                Smart Medical
+                <span>Appointment</span>
+                Scheduling
+            </h1>
+
+            <p>
+                An intelligent appointment scheduling system that
+                prioritizes patients according to disease seriousness
+                using the Greedy Algorithm.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="/register" class="btn primary-btn">
+                    Register Patient
+                </a>
+
+                <a href="/dashboard" class="btn secondary-btn">
+                    View Priority Queue
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-card">
+
+            <div class="card-header">
+                <span>Live Priority Queue</span>
+                <span class="live">
+                    ● LIVE
+                </span>
+            </div>
+
+            <div class="priority-item critical">
+
+                <div class="patient-icon">
+                    🚨
+                </div>
+
+                <div class="patient-info">
+                    <strong>Critical Patient</strong>
+                    <small>Highest Priority</small>
+                </div>
+
+                <div class="score">
+                    100
+                </div>
+
+            </div>
+
+
+            <div class="priority-item severe">
+
+                <div class="patient-icon">
+                    ⚠️
+                </div>
+
+                <div class="patient-info">
+                    <strong>Severe Patient</strong>
+                    <small>High Priority</small>
+                </div>
+
+                <div class="score">
+                    80
+                </div>
+
+            </div>
+
+
+            <div class="priority-item moderate">
+
+                <div class="patient-icon">
+                    🟡
+                </div>
+
+                <div class="patient-info">
+                    <strong>Moderate Patient</strong>
+                    <small>Medium Priority</small>
+                </div>
+
+                <div class="score">
+                    60
+                </div>
+
+            </div>
+
+
+            <div class="priority-item mild">
+
+                <div class="patient-icon">
+                    🟢
+                </div>
+
+                <div class="patient-info">
+                    <strong>Mild Patient</strong>
+                    <small>Normal Priority</small>
+                </div>
+
+                <div class="score">
+                    40
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Features -->
+    <section class="features">
+
+        <h2>How the System Works</h2>
+
+        <p class="section-description">
+            The system intelligently manages medical appointments
+            using priority-based scheduling.
+        </p>
+
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    👤
+                </div>
+
+                <h3>Patient Registration</h3>
+
+                <p>
+                    Patients enter their personal and medical
+                    information through a simple registration form.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🧠
+                </div>
+
+                <h3>Priority Calculation</h3>
+
+                <p>
+                    Disease seriousness is converted into a
+                    priority score automatically.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    ⚡
+                </div>
+
+                <h3>Greedy Scheduling</h3>
+
+                <p>
+                    The patient with the highest priority is
+                    selected first for appointment scheduling.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    📊
+                </div>
+
+                <h3>Live Dashboard</h3>
+
+                <p>
+                    Doctors and administrators can view the
+                    current patient priority queue.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Priority Section -->
+    <section class="priority-section">
+
+        <h2>Priority Levels</h2>
+
+        <div class="priority-table">
+
+            <div class="table-row table-header">
+
+                <div>Severity</div>
+                <div>Priority Score</div>
+                <div>Scheduling Level</div>
+
+            </div>
+
+
+            <div class="table-row">
+
+                <div>
+                    <span class="severity critical-text">
+                        Critical
+                    </span>
+                </div>
+
+                <div>
+                    <strong>100</strong>
+                </div>
+
+                <div>
+                    Immediate
+                </div>
+
+            </div>
+
+
+            <div class="table-row">
+
+                <div>
+                    <span class="severity severe-text">
+                        Severe
+                    </span>
+                </div>
+
+                <div>
+                    <strong>80</strong>
+                </div>
+
+                <div>
+                    High
+                </div>
+
+            </div>
+
+
+            <div class="table-row">
+
+                <div>
+                    <span class="severity moderate-text">
+                        Moderate
+                    </span>
+                </div>
+
+                <div>
+                    <strong>60</strong>
+                </div>
+
+                <div>
+                    Medium
+                </div>
+
+            </div>
+
+
+            <div class="table-row">
+
+                <div>
+                    <span class="severity mild-text">
+                        Mild
+                    </span>
+                </div>
+
+                <div>
+                    <strong>40</strong>
+                </div>
+
+                <div>
+                    Normal
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <div>
+            <strong>SmartMed</strong>
+        </div>
+
+        <p>
+            Intelligent Medical Appointment Scheduling System
+        </p>
+
+        <p>
+            Designed using Greedy Algorithm
+        </p>
+
+    </footer>
+
+
+    <script src="static/script.js"></script>
+
+</body>
+</html>
